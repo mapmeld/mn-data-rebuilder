@@ -41,19 +41,19 @@
 				Home			</a>
 					</li>
 				<li id="dropdown-list">
-			<a href="http://manaikhoroo.ub.gov.mn/en/indicator.php">
+			<a href="http://localhost:9000/en/indicator.php">
 			<i><img src="http://manaikhoroo.ub.gov.mn/en/webroot/menu/367_20150123104659.png" /></i>
 				Districts			</a>
 						<ul class="dropdown-list" role="menu">
-								<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=1">Baganuur</a></li>
-							<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=2">Bagakhangai</a></li>
-							<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=3">Bayngol</a></li>
-							<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=4">Baynzurkh</a></li>
-							<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=5">Nalaikh</a></li>
-							<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=6">Songinokhairkhan</a></li>
-							<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=7">Sukhbaatar</a></li>
-							<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=8">Khan-Uul</a></li>
-							<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=9">Chingeltei</a></li>
+								<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=1">Baganuur</a></li>
+							<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=2">Bagakhangai</a></li>
+							<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=3">Bayngol</a></li>
+							<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=4">Baynzurkh</a></li>
+							<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=5">Nalaikh</a></li>
+							<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=6">Songinokhairkhan</a></li>
+							<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=7">Sukhbaatar</a></li>
+							<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=8">Khan-Uul</a></li>
+							<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=9">Chingeltei</a></li>
 						</ul>
 					</li>
 				<li >
@@ -5896,7 +5896,7 @@ var styles1 = [
 }
 
 function addMarker(typeid, district) {
-	$.getJSON('http://manaikhoroo.ub.gov.mn/en/indicator.php?action=getMarkers&type='+typeid+'&district='+district+'', function(point){
+	$.getJSON('http://localhost:9000/en/indicator.php?action=getMarkers&type='+typeid+'&district='+district+'', function(point){
 		if(point.coordinate.length == 0) {
 			return;
 		} else {
@@ -5947,7 +5947,7 @@ function addMarker(typeid, district) {
 }
 
 function addFlood(floodId) {
-	$.getJSON('http://manaikhoroo.ub.gov.mn/en/indicator.php?action=risksBorder&id='+floodId, function(point){
+	$.getJSON('http://localhost:9000/en/indicator.php?action=risksBorder&id='+floodId, function(point){
 		if(point.coordinate.length == 0) {
 			return;
 		} else {
@@ -5969,7 +5969,7 @@ function addFlood(floodId) {
 }
 
 function addPlayground(plId) {
-	$.getJSON('http://manaikhoroo.ub.gov.mn/en/indicator.php?action=playgroundBorder&id='+plId, function(point){
+	$.getJSON('http://localhost:9000/en/indicator.php?action=playgroundBorder&id='+plId, function(point){
 		if(point.coordinate.length == 0) {
 			return;
 		} else {
@@ -6001,7 +6001,7 @@ function removePlayground(plId) {
 }
 
 function addSection(section) {
-	$.getJSON('http://manaikhoroo.ub.gov.mn/en/marker.php?page=sectionBorder&section='+section, function(point){
+	$.getJSON('http://localhost:9000/en/marker.php?page=sectionBorder&section='+section, function(point){
 		if(point.coordinate.length == 0) {
 			return;
 		} else {
@@ -6030,7 +6030,7 @@ function removeRegionColor(section) {
 }
 
 function addRegionColor(section, color) {
-	$.getJSON('http://manaikhoroo.ub.gov.mn/en/marker.php?page=sectionBorder&section='+section, function(point){
+	$.getJSON('http://localhost:9000/en/marker.php?page=sectionBorder&section='+section, function(point){
 		if(point.coordinate.length == 0) {
 			return;
 		} else {
@@ -6093,7 +6093,7 @@ function addWalk(type, district) {
 	} else {
 		var walkid = 2;
 	}
-	$.getJSON('http://manaikhoroo.ub.gov.mn/en/indicator.php?action=getMarkers&type='+walkid+'&district='+district+'', function(point){
+	$.getJSON('http://localhost:9000/en/indicator.php?action=getMarkers&type='+walkid+'&district='+district+'', function(point){
 		if(point.coordinate.length == 0) {
 			return;
 		} else {
@@ -6172,7 +6172,7 @@ function addWalk(type, district) {
 }
 
 function fitBoundary(district, region) {
-	$.getJSON('http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionBorder&region='+region, function(point){
+	$.getJSON('http://localhost:9000/en/indicator.php?action=regionBorder&region='+region, function(point){
 		if(point.coordinate.length == 0) {
 			return;
 		} else {
@@ -6225,7 +6225,7 @@ function addRegionTitle(regionid, distlat, distlng, image) {
 }
 
 function addRegion(district, region, image) {
-	$.getJSON('http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionBorder&region='+region, function(point){
+	$.getJSON('http://localhost:9000/en/indicator.php?action=regionBorder&region='+region, function(point){
 		if(point.coordinate.length == 0) {
 			return;
 		} else {
@@ -6254,7 +6254,7 @@ function removeDistrictBackground(regId) {
 }
 
 function addDistrictBackground(regId) {
-	$.getJSON('http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionBorder&region='+regId, function(point){
+	$.getJSON('http://localhost:9000/en/indicator.php?action=regionBorder&region='+regId, function(point){
 		if(point.coordinate.length == 0) {
 			return;
 		} else {
@@ -7208,7 +7208,7 @@ $(document).ready(function () {
 				<div class="footer-menu-list">
 					<ul>
 						<li><a href="http://manaikhoroo.ub.gov.mn/en/index.php">Home</a></li>
-						<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php">Districts</a></li>
+						<li><a href="http://localhost:9000/en/indicator.php">Districts</a></li>
 						<li><a href="http://manaikhoroo.ub.gov.mn/en/news.php?page=info&id=7">About us</a></li>
 						<li><a href="http://manaikhoroo.ub.gov.mn/en/news.php">News</a></li>
 						<li><a href="http://manaikhoroo.ub.gov.mn/en/user.php?page=sanalAdd">Feedback, Comments</a></li>
@@ -7224,15 +7224,15 @@ $(document).ready(function () {
 				</div>
 				<div class="footer-menu-list">
 					<ul>
-						<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=1">Baganuur</a></li>
-						<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=2">Bagakhangai</a></li>
-						<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=3">Bayngol</a></li>
-						<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=4">Baynzurkh</a></li>
-						<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=5">Nalaikh</a></li>
-						<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=6">Songinokhairkhan</a></li>
-						<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=7">Sukhbaatar</a></li>
-						<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=8">Khan-Uul</a></li>
-						<li><a href="http://manaikhoroo.ub.gov.mn/en/indicator.php?action=regionView&district=9">Chingeltei</a></li>
+						<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=1">Baganuur</a></li>
+						<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=2">Bagakhangai</a></li>
+						<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=3">Bayngol</a></li>
+						<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=4">Baynzurkh</a></li>
+						<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=5">Nalaikh</a></li>
+						<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=6">Songinokhairkhan</a></li>
+						<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=7">Sukhbaatar</a></li>
+						<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=8">Khan-Uul</a></li>
+						<li><a href="http://localhost:9000/en/indicator.php?action=regionView&district=9">Chingeltei</a></li>
 					</ul>
 				</div>
 			</div>
