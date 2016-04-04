@@ -769,7 +769,8 @@ function initialize() {
 		regions = data;
 		map.data.setStyle({
 			strokeOpacity: 0,
-			fillOpacity: 0
+			fillOpacity: 0,
+			clickable: false
 		});
 		map.data.addGeoJson(regions);
 
@@ -823,6 +824,7 @@ addRegionTitle(115, 47.998020517322686, 106.9716265797615, "/img/regions/sukhbaa
 addRegionTitle(116, 47.95346111164461, 106.90614715218544, "/img/regions/sukhbaatar19.png");
 addRegionTitle(117, 48.05926635637732, 107.00050592422485, "/img/regions/sukhbaatar20.png");
 
+/*
 				addMarker(1, 7);
 				addMarker(2, 7);
 				addMarker(3, 7);
@@ -842,6 +844,7 @@ addRegionTitle(117, 48.05926635637732, 107.00050592422485, "/img/regions/sukhbaa
 				addMarker(18, 7);
 				addMarker(19, 7);
 			  addMarker(20, 7);
+	*/
 
   	$(".color-checker").click(function(){
 		var colorType = $(this).find(".color-checkbox").attr("data");
@@ -1514,18 +1517,21 @@ addRegionTitle(117, 48.05926635637732, 107.00050592422485, "/img/regions/sukhbaa
 	$(".marker-checker").click(function(){
 		var markerType = $(this).find(".marker-checkbox").attr("data");
 		if($(this).attr("data") == "checked") {
+			console.log('hiding markerType: ' + markerType);
 			$(this).find(".marker-checkbox").show();
 			$(this).find(".marker-checked").hide();
 			$(this).removeAttr("data");
 			if(markerType == "sectionline") {
 				map.data.setStyle({
 					strokeOpacity: 0,
-					fillOpacity: 0
+					fillOpacity: 0,
+					clickable: false
 				});
 							} else if(markerType == "flood-pol") {
-							} else if(markerType == "pl-pol") {
-								for (var p = 0; p < playgrounds.length; p++) {
-									playgrounds[p].setStyle({ fillOpacity: 0 });
+							} else if(markerType == 19) {
+								var pids = Object.keys(playgrounds);
+								for (var p = 0; p < pids.length; p++) {
+									playgrounds[pids[p]].setMap(null);
 								}
 							} else if(markerType == "road-pol") {
 				map.setOptions({styles: roadStylesRemove});
@@ -1686,7 +1692,7 @@ addRegionTitle(117, 48.05926635637732, 107.00050592422485, "/img/regions/sukhbaa
 									addFlood(558);
 									addFlood(560);
 									addFlood(562);
-							} else if(markerType == "pl-pol") {
+							} else if(markerType == 19) {
 									addPlayground(75);
 									addPlayground(76);
 									addPlayground(203);
@@ -1742,7 +1748,7 @@ addRegionTitle(117, 48.05926635637732, 107.00050592422485, "/img/regions/sukhbaa
 							} else if(markerType == "road-pol") {
 				map.setOptions({styles: roadStyles});
 			} else {
-				$.ajax({
+				/*$.ajax({
 					type: "post",
 					data: { type: markerType, district: 7 },
 					url:"infoBoxRegion.php",
@@ -1757,9 +1763,9 @@ addRegionTitle(117, 48.05926635637732, 107.00050592422485, "/img/regions/sukhbaa
 					success:function (result) {
 						$(".markerbox-type"+markerType).html(result);
 					}
-				});
+				});*/
 				$(".mainfobox-title").show();
-				addMarker(markerType, 7);
+				//addMarker(markerType, 7);
 			}
 		}
 	});
@@ -1917,7 +1923,7 @@ var playgrounds = {};
 
 function addPlayground(plId) {
 	if (playgrounds[plId]) {
-		playgrounds[plId].setStyle({ fillOpacity: 0.6 });
+		playgrounds[plId].setMap(map);
 	} else {
 		$.getJSON('http://localhost:9000/en/indicator.php?action=playgroundBorder&id='+plId, function(point){
 			if(point.coordinate.length == 0) {
@@ -1927,8 +1933,8 @@ function addPlayground(plId) {
 				for(var k = 0; k < point.coordinate.length; k++) {
 					coord.push(new google.maps.LatLng(point.coordinate[k][0], point.coordinate[k][1]));
 				}
-				playgrounds[plId] = new google.maps.Polygon({
-	    			path: window['plCoord'+plId],
+				playgrounds['p' + plId] = new google.maps.Polygon({
+	    			path: coord,
 	    			 strokeColor: '#4a9e32',
 	    			 strokeOpacity: 1,
 	    			 strokeWeight: 2,
@@ -1969,7 +1975,8 @@ function setRegionColor(section, color) {
 	map.data.setStyle(function(feature) {
 		return {
 			fillColor: feature.getProperty('color'),
-			fillOpacity: 0.5
+			fillOpacity: 0.5,
+			clickable: false
 		};
 	});
 }
